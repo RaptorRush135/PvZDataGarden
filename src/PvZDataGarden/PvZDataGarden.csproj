@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<ModVersion>0.0.1</ModVersion>
+		<ModAuthor>RaptorRush</ModAuthor>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+		<LangVersion>latest</LangVersion>
+		<AssemblyVersion>$(ModVersion)</AssemblyVersion>
+		<PlatformTarget>x64</PlatformTarget>
+		<IsPackable>false</IsPackable>
+		<InvariantGlobalization>true</InvariantGlobalization>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<Target Name="GenerateVersionFile" BeforeTargets="BeforeCompile;CoreCompile" Outputs="ModInfo.g.cs">
+		<ItemGroup>
+			<Compile Include="ModInfo.g.cs" />
+			<FileWrites Include="ModInfo.g.cs" />
+		</ItemGroup>
+		<WriteLinesToFile
+		  File="ModInfo.g.cs"
+		  Lines="
+namespace $(RootNamespace)%3B
+
+internal static class ModInfo
+{
+	public const string Name = nameof($(RootNamespace))%3B
+
+	public const string Version = &quot;$(ModVersion)&quot;%3B
+
+	public const string Author = &quot;$(ModAuthor)&quot;%3B
+}"
+		  WriteOnlyWhenDifferent="true"
+		  Overwrite="true" />
+	</Target>
+
+	<Target Name="CheckPvzReDir" BeforeTargets="BeforeBuild">
+		<Error Condition="'$(PvzReDir)' == ''" Text="Environment variable 'PvzReDir' is required but not set." />
+		<Message Text="PvzReDir is: $(PvzReDir)" Importance="high" />
+	</Target>
+
+	<ItemGroup>
+		<Reference Include="$(PvzReDir)\MelonLoader\Il2CppAssemblies\*.dll" />
+		<Reference Include="$(PvzReDir)\MelonLoader\net6\MelonLoader.dll" />
+		<Reference Include="$(PvzReDir)\MelonLoader\net6\0Harmony.dll" />
+		<Reference Include="$(PvzReDir)\MelonLoader\net6\Il2CppInterop.Runtime.dll" />
+		<Reference Include="$(PvzReDir)\MelonLoader\net6\Il2CppInterop.Common.dll" />
+	</ItemGroup>
+
+	<Target Name="CopyDllToMods" AfterTargets="PostBuildEvent">
+		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(PvzReDir)\Mods" />
+	</Target>
+</Project>
