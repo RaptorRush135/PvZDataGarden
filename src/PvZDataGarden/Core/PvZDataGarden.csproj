@@ -1,28 +1,31 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
-	<Target Name="GenerateVersionFile" BeforeTargets="BeforeCompile;CoreCompile" Outputs="ModInfo.g.cs">
-		<ItemGroup>
-			<FileWrites Include="ModInfo.g.cs" />
-		</ItemGroup>
-		<WriteLinesToFile
-		  File="ModInfo.g.cs"
-		  Lines="
+  <PropertyGroup>
+    <VersionFile>
+      <![CDATA[
 namespace $(RootNamespace)%3B
 
 internal static class ModInfo
 {
 	public const string Name = nameof($(RootNamespace))%3B
 
-	public const string Version = &quot;$(ModVersion)&quot;%3B
+	public const string Version = "$(ModVersion)"%3B
 
-	public const string Author = &quot;$(ModAuthor)&quot;%3B
-}"
-		  WriteOnlyWhenDifferent="true"
-		  Overwrite="true" />
+	public const string Author = "$(ModAuthor)"%3B
+}
+      ]]>
+    </VersionFile>
+  </PropertyGroup>
+
+	<Target Name="GenerateVersionFile" BeforeTargets="BeforeCompile;CoreCompile" Outputs="ModInfo.g.cs">
+		<ItemGroup>
+			<FileWrites Include="ModInfo.g.cs" />
+		</ItemGroup>
+		<WriteLinesToFile File="ModInfo.g.cs" Lines="$(VersionFile)" WriteOnlyWhenDifferent="true" Overwrite="true" />
 	</Target>
 
 	<Target Name="CheckPvzReDir" BeforeTargets="BeforeBuild">
