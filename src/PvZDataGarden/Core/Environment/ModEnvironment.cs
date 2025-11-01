@@ -1,6 +1,8 @@
-﻿namespace PvZDataGarden;
+﻿namespace PvZDataGarden.Environment;
 
 using MelonLoader.Utils;
+
+using PvZDataGarden.Metadata;
 
 internal static class ModEnvironment
 {

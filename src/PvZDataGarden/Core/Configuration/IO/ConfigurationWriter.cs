@@ -5,6 +5,8 @@ using System.Text.Json.Serialization;
 
 using MelonLoader;
 
+using PvZDataGarden.Environment;
+
 public static class ConfigurationWriter
 {
     private static readonly JsonSerializerOptions JsonOptions = new()

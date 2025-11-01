@@ -4,6 +4,8 @@ using System.Text.Json;
 
 using MelonLoader;
 
+using PvZDataGarden.Environment;
+
 public static class ConfigurationReader
 {
     private static readonly JsonSerializerOptions JsonOptions = new()
