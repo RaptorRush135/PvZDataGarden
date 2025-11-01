@@ -3,6 +3,8 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
+using MelonLoader;
+
 public static class ConfigurationWriter
 {
     private static readonly JsonSerializerOptions JsonOptions = new()
@@ -12,17 +14,12 @@ public static class ConfigurationWriter
     };
 
     public static void Write<TKey, TConfiguration>(
-        string path,
+        ModFileInfo file,
         IReadOnlyDictionary<TKey, TConfiguration> configurations)
     {
-        using var stream = File.Create(path);
-        Write(stream, configurations);
-    }
+        Melon<Core>.Logger.Msg($"Writing '{typeof(TConfiguration).Name}' to '{file.Path}'");
 
-    public static void Write<TKey, TConfiguration>(
-        Stream stream,
-        IReadOnlyDictionary<TKey, TConfiguration> configurations)
-    {
+        using var stream = file.Create();
         JsonSerializer.Serialize(stream, configurations, JsonOptions);
     }
 }

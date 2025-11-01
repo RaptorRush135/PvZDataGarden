@@ -17,8 +17,15 @@ public sealed class Core : MelonMod
 
     private static void OnDataServiceReady(IDataService dataService)
     {
-        var collector = new PlantConfigurationCollector();
-        collector.Collect(
-            dataService.PlantDefinitions.AsEnumerable());
+        var synchronizer = new PlantConfigurationSynchronizer();
+        if (!synchronizer.HasCollected)
+        {
+            synchronizer.Collect(
+                dataService.PlantDefinitions.AsEnumerable());
+
+            return;
+        }
+
+        synchronizer.Patch(dataService.GetPlantDefinition);
     }
 }

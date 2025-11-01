@@ -2,6 +2,8 @@
 
 using System.Text.Json.Serialization;
 
+using Il2CppReloaded.Data;
+
 public record PlantConfigurationData
 {
     public static readonly string DefaultFileName = "plants.json";
@@ -22,6 +24,14 @@ public record PlantConfigurationData
     public PlantVersusConfiguration? Versus { get; set; }
 
     public PlantConfigurationData AsData() => this;
+
+    public void Patch(PlantDefinition definition)
+    {
+        definition.m_seedCost = this.Cost ?? definition.m_seedCost;
+        definition.m_refreshTime = this.RefreshTime ?? definition.m_refreshTime;
+        definition.m_launchRate = this.LaunchRate ?? definition.m_launchRate;
+        this.Versus?.Patch(definition);
+    }
 
     private static bool IsNullOrZero(int? value) => value is null or 0;
 }
