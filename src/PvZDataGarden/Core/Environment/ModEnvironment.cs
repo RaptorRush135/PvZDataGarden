@@ -1,4 +1,4 @@
-﻿namespace PvZDataGarden;
+﻿namespace PvZDataGarden.Environment;
 
 using MelonLoader.Utils;
 

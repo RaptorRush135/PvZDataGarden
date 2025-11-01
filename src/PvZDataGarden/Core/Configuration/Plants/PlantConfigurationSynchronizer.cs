@@ -8,6 +8,7 @@ using MelonLoader;
 using PvZDataGarden.Configuration;
 using PvZDataGarden.Configuration.IO;
 using PvZDataGarden.Configuration.Plants.Data;
+using PvZDataGarden.Environment;
 using PvZDataGarden.Extensions;
 
 public sealed class PlantConfigurationSynchronizer

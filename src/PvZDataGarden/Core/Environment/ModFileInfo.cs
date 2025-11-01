@@ -1,4 +1,4 @@
-﻿namespace PvZDataGarden;
+﻿namespace PvZDataGarden.Environment;
 
 public sealed class ModFileInfo
 {

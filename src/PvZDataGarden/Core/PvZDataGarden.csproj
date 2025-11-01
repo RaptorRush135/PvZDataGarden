@@ -7,7 +7,7 @@
   <PropertyGroup>
     <VersionFile>
       <![CDATA[
-namespace $(RootNamespace)%3B
+namespace $(RootNamespace).Metadata%3B
 
 internal static class ModInfo
 {
@@ -21,11 +21,11 @@ internal static class ModInfo
     </VersionFile>
   </PropertyGroup>
 
-	<Target Name="GenerateVersionFile" BeforeTargets="BeforeCompile;CoreCompile" Outputs="ModInfo.g.cs">
+	<Target Name="GenerateVersionFile" BeforeTargets="BeforeCompile;CoreCompile" Outputs="Metadata/ModInfo.g.cs">
 		<ItemGroup>
-			<FileWrites Include="ModInfo.g.cs" />
+			<FileWrites Include="Metadata/ModInfo.g.cs" />
 		</ItemGroup>
-		<WriteLinesToFile File="ModInfo.g.cs" Lines="$(VersionFile)" WriteOnlyWhenDifferent="true" Overwrite="true" />
+		<WriteLinesToFile File="Metadata/ModInfo.g.cs" Lines="$(VersionFile)" WriteOnlyWhenDifferent="true" Overwrite="true" />
 	</Target>
 
 	<Target Name="CheckPvzReDir" BeforeTargets="BeforeBuild">
