@@ -14,7 +14,7 @@ using PvZDataGarden.Extensions;
 public sealed class PlantConfigurationSynchronizer
     : IConfigurationSynchronizer<SeedType, PlantDefinition>
 {
-    private readonly ModFileInfo targetFile = ModEnvironment.GetFile(PlantConfigurationData.DefaultFileName);
+    private readonly ModFileInfo targetFile = ModEnvironment.GetDataFile(PlantConfigurationData.DefaultFileName);
 
     public bool HasCollected => this.targetFile.Exists;
 

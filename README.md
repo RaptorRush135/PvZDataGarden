@@ -77,7 +77,7 @@ The `plants.json` looks like this:
 
 3. **Run the game once**
 
-    > The mod creates a `plants.json` file in `Mods/PvZDataGarden`.
+    > The mod creates a `plants.json` file in `UserData/PvZDataGarden`.
 
 4. **Edit the JSON**
 

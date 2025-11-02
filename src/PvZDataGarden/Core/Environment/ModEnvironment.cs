@@ -6,12 +6,12 @@ using PvZDataGarden.Metadata;
 
 internal static class ModEnvironment
 {
-    public static string ModDirectory { get; }
-        = Path.Join(MelonEnvironment.ModsDirectory, ModInfo.Name);
+    public static string ModDataDirectory { get; }
+        = Path.Join(MelonEnvironment.UserDataDirectory, ModInfo.Name);
 
-    public static ModFileInfo GetFile(params IEnumerable<string> paths)
+    public static ModFileInfo GetDataFile(params IEnumerable<string> paths)
     {
         return new(
-            Path.Join([ModDirectory, .. paths]));
+            Path.Join([ModDataDirectory, .. paths]));
     }
 }
