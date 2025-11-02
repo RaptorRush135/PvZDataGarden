@@ -33,6 +33,12 @@ internal static class ModInfo
 		<Message Text="PvzReDir is: $(PvzReDir)" Importance="high" />
 	</Target>
 
+  <ItemDefinitionGroup>
+    <Reference>
+      <Private>false</Private>
+    </Reference>
+  </ItemDefinitionGroup>
+
 	<ItemGroup>
 		<Reference Include="$(PvzReDir)\MelonLoader\Il2CppAssemblies\*.dll" />
 		<Reference Include="$(PvzReDir)\MelonLoader\net6\MelonLoader.dll" />
