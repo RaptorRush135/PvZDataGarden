@@ -7,14 +7,14 @@
 ## 🧩 Requirements
 
 * 🎮 A copy of **Plants vs. Zombies™: Replanted**
-* 🍉 **[MelonLoader](https://github.com/LavaGang/MelonLoader)** – required mod loader
+* 🍉 **[MelonLoader](https://github.com/LavaGang/MelonLoader)** - required mod loader
 
 ## ✨ Features
 
-* 📦 **Automatic Dump** – On the first run, all plant definitions are exported to `plants.json`.
-* 🛠️ **Editable Stats** – Modify cost, refresh time, launch rate, and more directly in JSON.
-* 🔁 **Persistent Changes** – The mod reads `plants.json` every startup and applies your edits automatically.
-* ⚔️ **Versus Mode Support** – Separate configuration for Versus mode.
+* 📦 **Automatic Dump** - On the first run, all plant definitions are exported to `plants.json`.
+* 🛠️ **Editable Stats** - Modify cost, refresh time, launch rate, and more directly in JSON.
+* 🔁 **Persistent Changes** - The mod reads `plants.json` every startup and applies your edits automatically.
+* ⚔️ **Versus Mode Support** - Separate configuration for Versus mode.
 
 ---
 
@@ -54,7 +54,7 @@ The `plants.json` looks like this:
 | ------------------------------- | --------------------------------------------------- |
 | `Cost`                          | Sun cost of the plant seed packet.                  |
 | `RefreshTime`                   | Time between plant uses.                            |
-| `LaunchRate`                    | Projectile shooting rate.                           |
+| `LaunchRate`                    | Projectile shooting or sun production rate.         |
 | `Versus`                        | Overrides used only in Versus mode.                 |
 
 | Versus Field                    | Description                                         |
