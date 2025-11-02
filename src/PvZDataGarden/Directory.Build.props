@@ -11,14 +11,15 @@
     <ImplicitUsings>true</ImplicitUsings>
     <LangVersion>latest</LangVersion>
     <AssemblyVersion>$(ModVersion)</AssemblyVersion>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
     <PlatformTarget>x64</PlatformTarget>
     <IsPackable>false</IsPackable>
     <InvariantGlobalization>true</InvariantGlobalization>
   </PropertyGroup>
 
 	<PropertyGroup>
-		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<NoWarn>CS1591;SA1600;SA1601;SA1602;SA1629;SA1633</NoWarn>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>CS1591;SA1600;SA1601;SA1602;SA1629;SA1633</NoWarn>
 	</PropertyGroup>
 
   <ItemGroup>
