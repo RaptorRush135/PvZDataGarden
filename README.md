@@ -4,7 +4,7 @@
 >
 > The mod dumps all plant definitions (and that includes zombie seed packets) on startup and reloads your edits the next time you launch the game.
 
-## Download
+## 📦 Download
 
 - [GameBanana](https://gamebanana.com/mods/631190)
 
@@ -15,9 +15,9 @@
 
 ## ✨ Features
 
-* 📦 **Automatic Dump** - On the first run, all plant definitions are exported to `plants.json`.
+* ⬇️ **Automatic Dump** - On the first run, plant definitions are exported to `plants.json`.
 * 🛠️ **Editable Stats** - Modify cost, refresh time, launch rate, and more directly in JSON.
-* 🔁 **Persistent Changes** - The mod reads `plants.json` every startup and applies your edits automatically.
+* 💾 **Persistent Changes** - The mod reads `plants.json` every startup and applies your edits automatically.
 * ⚔️ **Versus Mode Support** - Separate configuration for Versus mode.
 
 ---
@@ -93,7 +93,7 @@ The `plants.json` looks like this:
 
 ## ⚠️ Notes & Tips
 
-- 💾 Backup your original `plants.json` to view the original definitions.
+- 🗄️ Backup your original `plants.json` to view the original definitions.
 
 - 🧠 Zombie seed packets are also considered “plants.”
 This means zombie seed packets appear in the same list and can be tweaked the same way.
