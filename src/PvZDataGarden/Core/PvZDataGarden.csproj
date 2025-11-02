@@ -16,6 +16,8 @@ internal static class ModInfo
 	public const string Version = "$(ModVersion)"%3B
 
 	public const string Author = "$(ModAuthor)"%3B
+
+	public const string DownloadLink = "$(ModDownloadLink)"%3B
 }
       ]]>
     </VersionFile>
