@@ -4,6 +4,10 @@
 >
 > The mod dumps all plant definitions (and that includes zombie seed packets) on startup and reloads your edits the next time you launch the game.
 
+## Download
+
+- [GameBanana](https://gamebanana.com/mods/631190)
+
 ## 🧩 Requirements
 
 * 🎮 A copy of **Plants vs. Zombies™: Replanted**
