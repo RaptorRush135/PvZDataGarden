@@ -14,13 +14,13 @@ public static class ConfigurationReader
         AllowTrailingCommas = true,
     };
 
-    public static IReadOnlyDictionary<TKey, TConfiguration> Read<TKey, TConfiguration>(
+    public static IReadOnlyDictionary<TType, TConfiguration> Read<TType, TConfiguration>(
         ModFileInfo file)
     {
         Melon<Core>.Logger.Msg($"Reading '{typeof(TConfiguration).Name}' from '{file.Path}'");
 
         using var stream = file.OpenRead();
-        return JsonSerializer.Deserialize<IReadOnlyDictionary<TKey, TConfiguration>>(stream, JsonOptions)
+        return JsonSerializer.Deserialize<IReadOnlyDictionary<TType, TConfiguration>>(stream, JsonOptions)
             ?? throw new JsonException("Failed to deserialize JSON into a dictionary. The input may be empty or null.");
     }
 }

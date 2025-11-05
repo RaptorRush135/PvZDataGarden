@@ -1,4 +1,4 @@
-﻿namespace PvZDataGarden.Configuration.Plants.Data;
+﻿namespace PvZDataGarden.Configuration.Gameplay.Plants.Data;
 
 using Il2CppReloaded.Data;
 

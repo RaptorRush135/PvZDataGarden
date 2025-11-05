@@ -15,9 +15,9 @@ public static class ConfigurationWriter
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
     };
 
-    public static void Write<TKey, TConfiguration>(
+    public static void Write<TType, TConfiguration>(
         ModFileInfo file,
-        IReadOnlyDictionary<TKey, TConfiguration> configurations)
+        IReadOnlyDictionary<TType, TConfiguration> configurations)
     {
         Melon<Core>.Logger.Msg($"Writing '{typeof(TConfiguration).Name}' to '{file.Path}'");
 

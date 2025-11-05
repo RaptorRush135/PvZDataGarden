@@ -1,4 +1,4 @@
-﻿namespace PvZDataGarden.Configuration.Plants.Data;
+﻿namespace PvZDataGarden.Configuration.Gameplay.Plants.Data;
 
 using Il2CppReloaded.Data;
 using Il2CppReloaded.Gameplay;
@@ -32,6 +32,8 @@ public sealed record PlantConfiguration : PlantConfigurationData
 
         return configuration;
     }
+
+    public PlantConfigurationData AsData() => this;
 
     private static void ApplyTypeFilter(PlantConfiguration configuration)
     {

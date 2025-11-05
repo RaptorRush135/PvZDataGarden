@@ -1,13 +1,11 @@
-﻿namespace PvZDataGarden.Configuration.Plants.Data;
+﻿namespace PvZDataGarden.Configuration.Gameplay.Plants.Data;
 
 using System.Text.Json.Serialization;
 
 using Il2CppReloaded.Data;
 
-public record PlantConfigurationData
+public record PlantConfigurationData : IConfigurationData<PlantDefinition>
 {
-    public static readonly string DefaultFileName = "plants.json";
-
     [JsonIgnore]
     public virtual bool IsEmpty =>
         IsNullOrZero(this.Cost) &&
@@ -22,8 +20,6 @@ public record PlantConfigurationData
     public int? LaunchRate { get; set; }
 
     public PlantVersusConfiguration? Versus { get; set; }
-
-    public PlantConfigurationData AsData() => this;
 
     public void Patch(PlantDefinition definition)
     {

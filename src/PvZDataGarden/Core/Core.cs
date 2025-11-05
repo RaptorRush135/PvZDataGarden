@@ -1,15 +1,31 @@
 ﻿namespace PvZDataGarden;
 
+using Il2CppReloaded.Data;
+using Il2CppReloaded.Gameplay;
 using Il2CppReloaded.Services;
 
 using MelonLoader;
 
 using PvZDataGarden.Api;
-using PvZDataGarden.Configuration.Plants;
+using PvZDataGarden.Configuration.Gameplay.Plants;
+using PvZDataGarden.Configuration.Gameplay.Projectiles;
+using PvZDataGarden.Configuration.Synchronization;
 using PvZDataGarden.Extensions;
 
 public sealed class Core : MelonMod
 {
+    private static readonly IReadOnlyCollection<IConfigurationSynchronizationDescriptor> Configurations =
+    [
+        new ConfigurationSynchronizationDescriptor<SeedType, PlantDefinition>(
+            new PlantConfigurationSynchronizer("plants.json"),
+            s => s.PlantDefinitions.AsEnumerable(),
+            s => s.GetPlantDefinition),
+        new ConfigurationSynchronizationDescriptor<ProjectileType, ProjectileDefinition>(
+            new ProjectileConfigurationSynchronizer("projectiles.json"),
+            s => s.ProjectileDefinitions.AsEnumerable(),
+            s => s.GetProjectileDefinition),
+    ];
+
     public override void OnInitializeMelon()
     {
         DataServiceApi.OnReady += OnDataServiceReady;
@@ -17,15 +33,15 @@ public sealed class Core : MelonMod
 
     private static void OnDataServiceReady(IDataService dataService)
     {
-        var synchronizer = new PlantConfigurationSynchronizer();
-        if (!synchronizer.HasCollected)
+        foreach (var config in Configurations)
         {
-            synchronizer.Collect(
-                dataService.PlantDefinitions.AsEnumerable());
+            if (!config.HasCollected)
+            {
+                config.Collect(dataService);
+                continue;
+            }
 
-            return;
+            config.Patch(dataService);
         }
-
-        synchronizer.Patch(dataService.GetPlantDefinition);
     }
 }
