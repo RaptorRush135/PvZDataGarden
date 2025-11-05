@@ -35,13 +35,20 @@ public sealed class Core : MelonMod
     {
         foreach (var config in Configurations)
         {
-            if (!config.HasCollected)
+            try
             {
-                config.Collect(dataService);
-                continue;
-            }
+                if (!config.HasCollected)
+                {
+                    config.Collect(dataService);
+                    continue;
+                }
 
-            config.Patch(dataService);
+                config.Patch(dataService);
+            }
+            catch (Exception ex)
+            {
+                Melon<Core>.Logger.Error($"Error synchronizing '{config.DefinitionTypeName}'", ex);
+            }
         }
     }
 }

@@ -8,6 +8,8 @@ public sealed class ConfigurationSynchronizationDescriptor<TType, TDefinition>(
     Func<IDataService, Func<TType, TDefinition>> definitionProviderGetter)
     : IConfigurationSynchronizationDescriptor
 {
+    public string DefinitionTypeName => typeof(TDefinition).Name;
+
     public bool HasCollected => synchronizer.HasCollected;
 
     public void Collect(IDataService dataService)
