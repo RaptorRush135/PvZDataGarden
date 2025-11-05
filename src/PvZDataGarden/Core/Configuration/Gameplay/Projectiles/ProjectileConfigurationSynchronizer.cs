@@ -1,7 +1,5 @@
 ﻿namespace PvZDataGarden.Configuration.Gameplay.Projectiles;
 
-using System.Collections.Generic;
-
 using Il2CppReloaded.Data;
 using Il2CppReloaded.Gameplay;
 
