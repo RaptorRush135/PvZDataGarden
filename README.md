@@ -2,7 +2,7 @@
 
 > Easily tweak plant stats in *Plants vs. Zombies™: Replanted* by editing a simple JSON file.
 >
-> The mod dumps all plant definitions (and that includes zombie seed packets) on startup and reloads your edits the next time you launch the game.
+> The mod dumps all plant & projectile definitions (and that includes zombie seed packets) on startup and reloads your edits the next time you launch the game.
 
 ## 📦 Download
 
@@ -15,16 +15,16 @@
 
 ## ✨ Features
 
-* ⬇️ **Automatic Dump** - On the first run, plant definitions are exported to `plants.json`.
-* 🛠️ **Editable Stats** - Modify cost, refresh time, launch rate, and more directly in JSON.
-* 💾 **Persistent Changes** - The mod reads `plants.json` every startup and applies your edits automatically.
+* ⬇️ **Automatic Dump** - On the first run, definitions are exported to `.json` files.
+* 🛠️ **Editable Stats** - Modify cost, refresh time, launch rate, damage, and more directly in JSON.
+* 💾 **Persistent Changes** - The mod reads the files every startup and applies your edits automatically.
 * ⚔️ **Versus Mode Support** - Separate configuration for Versus mode.
 
 ---
 
 ## 🧾 JSON Format
 
-The `plants.json` looks like this:
+### 🪴 plants.json
 
 ```json
 {
@@ -67,6 +67,33 @@ The `plants.json` looks like this:
 | `RefreshTime`                   | Time between plant uses in Versus mode.             |
 | `SuddenDeathRefreshTime`        | Refresh time during Sudden Death in Versus mode.    |
 
+### 🟢 projectiles.json
+
+| Field                           | Description                                         |
+| ------------------------------- | --------------------------------------------------- |
+| `Damage`                        | The amount of damage the projectile deals.          |
+
+```json
+{
+  "Pea": {
+    "Damage": 20
+  },
+  "Melon": {
+    "Damage": 80
+  },
+  ...
+}
+```
+
+> [!NOTE]  
+> The basic Peashooter uses its own projectile variants:
+> - `PeashooterPea`
+> - `PeashooterFireball`
+>
+> All other Peashooter-type plants share the standard projectiles:
+> - `Pea`
+> - `Fireball`
+
 ---
 
 ## 🚀 How to Use
@@ -77,29 +104,29 @@ The `plants.json` looks like this:
 
 2. **Place the Mod DLL**
 
-    > Copy  `PvZDataGarden.dll` file into the game’s `Mods` folder.
+    > Copy `PvZDataGarden.dll` file into the game’s `Mods` folder.
 
 3. **Run the game once**
 
-    > The mod creates a `plants.json` file in `UserData/PvZDataGarden`.
+    > The mod creates some `.json` files in `UserData/PvZDataGarden`.
 
 4. **Edit the JSON**
 
-    > Open `plants.json` with a text editor and adjust the values.
+    > Open a `.json` file with a text editor and adjust the values.
 
 5. **Restart the game**
 
-    > Your custom plant stats will now be loaded and applied!
+    > Your custom values will now be loaded and applied!
 
 ## ⚠️ Notes & Tips
 
-- 🗄️ Backup your original `plants.json` to view the original definitions.
+- 🗄️ Backup your original `.json` files to view the original definitions.
 
 - 🧠 Zombie seed packets are also considered “plants.”
 This means zombie seed packets appear in the same list and can be tweaked the same way.
 
-- ⚙️ **Optional Properties** - All fields in plants.json are optional. Any missing ones automatically use their vanilla (default) values.
+- ⚙️ **Optional Properties** - All fields are optional. Any missing ones automatically use their vanilla (default) values.
 
-- 🌿 **Omitting Plants** - If you don’t need to modify a specific plant, simply leave it out of the JSON; it will remain unchanged in-game.
+- ✂️ **Omitting Types** - If you don’t need to modify a specific plant or projectile, simply leave it out of the JSON; it will remain unchanged in-game.
 
 - 🧾 **JSON Extras** - The JSON can contain comments and trailing commas.
