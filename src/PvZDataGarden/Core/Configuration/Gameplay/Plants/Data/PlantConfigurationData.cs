@@ -7,7 +7,7 @@ using Il2CppReloaded.Data;
 public record PlantConfigurationData : IConfigurationData<PlantDefinition>
 {
     [JsonIgnore]
-    public virtual bool IsEmpty =>
+    public bool IsEmpty =>
         IsNullOrZero(this.Cost) &&
         IsNullOrZero(this.RefreshTime) &&
         IsNullOrZero(this.LaunchRate) &&

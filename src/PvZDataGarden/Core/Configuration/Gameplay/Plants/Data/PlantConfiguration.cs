@@ -5,13 +5,6 @@ using Il2CppReloaded.Gameplay;
 
 public sealed record PlantConfiguration : PlantConfigurationData
 {
-    private static readonly IReadOnlyList<SeedType> EmptyPlantTypes = [
-        SeedType.ExplodeONut,
-        SeedType.GiantWallnut,
-        SeedType.Sprout];
-
-    public override bool IsEmpty => base.IsEmpty || EmptyPlantTypes.Contains(this.Type);
-
     public SeedType Type { get; set; }
 
     public static PlantConfiguration FromDefinition(PlantDefinition definition)
