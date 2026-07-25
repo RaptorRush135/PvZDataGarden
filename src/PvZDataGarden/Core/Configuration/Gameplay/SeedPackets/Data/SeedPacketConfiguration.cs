@@ -1,21 +1,21 @@
-﻿namespace PvZDataGarden.Configuration.Gameplay.Plants.Data;
+﻿namespace PvZDataGarden.Configuration.Gameplay.SeedPackets.Data;
 
 using Il2CppReloaded.Data;
 using Il2CppReloaded.Gameplay;
 
-public sealed record PlantConfiguration : PlantConfigurationData
+public sealed record SeedPacketConfiguration : SeedPacketConfigurationData
 {
     public SeedType Type { get; set; }
 
-    public static PlantConfiguration FromDefinition(PlantDefinition definition)
+    public static SeedPacketConfiguration FromDefinition(PlantDefinition definition)
     {
-        var configuration = new PlantConfiguration()
+        var configuration = new SeedPacketConfiguration()
         {
             Type = definition.SeedType,
             Cost = definition.SeedCost,
             RefreshTime = definition.RefreshTime,
             LaunchRate = definition.LaunchRate == 0 ? null : definition.LaunchRate,
-            Versus = PlantVersusConfiguration.Create(
+            Versus = SeedPacketVersusConfiguration.Create(
                 cost: definition.VersusCost,
                 refreshTime: definition.VersusBaseRefreshTime,
                 suddenDeathRefreshTime: definition.VersusSuddenDeathRefreshTime),
@@ -26,9 +26,9 @@ public sealed record PlantConfiguration : PlantConfigurationData
         return configuration;
     }
 
-    public PlantConfigurationData AsData() => this;
+    public SeedPacketConfigurationData AsData() => this;
 
-    private static void ApplyTypeFilter(PlantConfiguration configuration)
+    private static void ApplyTypeFilter(SeedPacketConfiguration configuration)
     {
         switch (configuration.Type)
         {

@@ -7,8 +7,8 @@ using Il2CppReloaded.Services;
 using MelonLoader;
 
 using PvZDataGarden.Api;
-using PvZDataGarden.Configuration.Gameplay.Plants;
 using PvZDataGarden.Configuration.Gameplay.Projectiles;
+using PvZDataGarden.Configuration.Gameplay.SeedPackets;
 using PvZDataGarden.Configuration.Synchronization;
 using PvZDataGarden.Extensions;
 
@@ -17,7 +17,7 @@ public sealed class Core : MelonMod
     private static readonly IReadOnlyCollection<IConfigurationSynchronizationDescriptor> Configurations =
     [
         new ConfigurationSynchronizationDescriptor<SeedType, PlantDefinition>(
-            new PlantConfigurationSynchronizer("plants.json"),
+            new SeedPacketConfigurationSynchronizer("packets.json"),
             s => s.PlantDefinitions.AsEnumerable(),
             s => s.GetPlantDefinition),
         new ConfigurationSynchronizationDescriptor<ProjectileType, ProjectileDefinition>(

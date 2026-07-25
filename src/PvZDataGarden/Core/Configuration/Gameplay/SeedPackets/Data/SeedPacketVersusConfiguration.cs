@@ -1,8 +1,8 @@
-﻿namespace PvZDataGarden.Configuration.Gameplay.Plants.Data;
+﻿namespace PvZDataGarden.Configuration.Gameplay.SeedPackets.Data;
 
 using Il2CppReloaded.Data;
 
-public sealed record class PlantVersusConfiguration
+public sealed record class SeedPacketVersusConfiguration
 {
     public int? Cost { get; set; }
 
@@ -20,7 +20,7 @@ public sealed record class PlantVersusConfiguration
             ?? definition.m_versusSuddenDeathRefreshTime;
     }
 
-    public static PlantVersusConfiguration? Create(
+    public static SeedPacketVersusConfiguration? Create(
         int cost,
         int refreshTime,
         int suddenDeathRefreshTime)

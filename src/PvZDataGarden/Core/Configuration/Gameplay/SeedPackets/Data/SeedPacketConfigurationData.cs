@@ -1,10 +1,10 @@
-﻿namespace PvZDataGarden.Configuration.Gameplay.Plants.Data;
+﻿namespace PvZDataGarden.Configuration.Gameplay.SeedPackets.Data;
 
 using System.Text.Json.Serialization;
 
 using Il2CppReloaded.Data;
 
-public record PlantConfigurationData : IConfigurationData<PlantDefinition>
+public record SeedPacketConfigurationData : IConfigurationData<PlantDefinition>
 {
     [JsonIgnore]
     public bool IsEmpty =>
@@ -19,7 +19,7 @@ public record PlantConfigurationData : IConfigurationData<PlantDefinition>
 
     public int? LaunchRate { get; set; }
 
-    public PlantVersusConfiguration? Versus { get; set; }
+    public SeedPacketVersusConfiguration? Versus { get; set; }
 
     public void Patch(PlantDefinition definition)
     {
