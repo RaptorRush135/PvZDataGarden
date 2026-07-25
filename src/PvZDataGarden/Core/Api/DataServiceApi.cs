@@ -7,8 +7,6 @@ using Il2CppReloaded.Services;
 
 using Il2CppTekly.Injectors;
 
-using MelonLoader;
-
 [HarmonyPatch]
 public static class DataServiceApi
 {
@@ -20,10 +18,6 @@ public static class DataServiceApi
     {
         var dataService = container.Get<IDataService>();
 
-        dataService.add_OnReady((Action)(() =>
-        {
-            Melon<Core>.Logger.Msg("DataService ready!");
-            OnReady?.Invoke(dataService);
-        }));
+        dataService.add_OnReady((Action)(() => OnReady?.Invoke(dataService)));
     }
 }
