@@ -7,7 +7,7 @@ using PvZDataGarden.Metadata;
 internal static class ModEnvironment
 {
     public static string ModDataDirectory { get; }
-        = Path.Join(MelonEnvironment.UserDataDirectory, ModInfo.Name);
+        = Path.Join(MelonEnvironment.UserDataDirectory, $"{ModInfo.Name}-{ModInfo.Version}");
 
     public static ModFileInfo GetDataFile(params IEnumerable<string> paths)
     {
