@@ -1,0 +1,8 @@
+{
+  "msbuild-sdks": {
+    "RaptorRush135.PvZR.Sdk": "1.1.2"
+  },
+  "test": {
+    "runner": "Microsoft.Testing.Platform"
+  }
+}

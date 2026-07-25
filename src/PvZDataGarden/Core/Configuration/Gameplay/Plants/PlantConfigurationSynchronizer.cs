@@ -13,7 +13,7 @@ public sealed class PlantConfigurationSynchronizer(string fileName)
     [
         SeedType.ExplodeONut,
         SeedType.GiantWallnut,
-        SeedType.Sprout
+        SeedType.Sprout,
     ];
 
     protected override Dictionary<SeedType, PlantConfigurationData> ExtractConfigurations(
