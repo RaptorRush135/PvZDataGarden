@@ -7,6 +7,7 @@ using Il2CppReloaded.Services;
 using MelonLoader;
 
 using PvZDataGarden.Api;
+using PvZDataGarden.Configuration.Gameplay.Plants;
 using PvZDataGarden.Configuration.Gameplay.Projectiles;
 using PvZDataGarden.Configuration.Gameplay.SeedPackets;
 using PvZDataGarden.Configuration.Gameplay.Zombies;
@@ -19,6 +20,10 @@ public sealed class Core : MelonMod
     [
         new ConfigurationSynchronizationDescriptor<SeedType, PlantDefinition>(
             new SeedPacketConfigurationSynchronizer("packets.json"),
+            s => s.PlantDefinitions.AsEnumerable(),
+            s => s.GetPlantDefinition),
+        new ConfigurationSynchronizationDescriptor<SeedType, PlantDefinition>(
+            new PlantConfigurationSynchronizer("plants.json"),
             s => s.PlantDefinitions.AsEnumerable(),
             s => s.GetPlantDefinition),
         new ConfigurationSynchronizationDescriptor<ZombieType, ZombieDefinition>(
