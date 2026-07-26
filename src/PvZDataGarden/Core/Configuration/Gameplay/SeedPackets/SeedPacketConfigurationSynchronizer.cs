@@ -20,8 +20,9 @@ public sealed class SeedPacketConfigurationSynchronizer(string fileName)
         IEnumerable<PlantDefinition> definitions)
     {
         return definitions
+            .Where(p => !IgnoredPlantTypes.Contains(p.SeedType))
             .Select(SeedPacketConfiguration.FromDefinition)
-            .Where(p => !p.IsEmpty && !IgnoredPlantTypes.Contains(p.Type))
+            .Where(p => !p.IsEmpty)
             .ToDictionary(p => p.Type, p => p.AsData());
     }
 }
