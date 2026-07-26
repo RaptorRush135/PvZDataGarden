@@ -14,9 +14,12 @@ public record ZombieConfigurationData : IConfigurationData<ZombieDefinition>
         // Nothing to patch
     }
 
-    public void Apply(Zombie zombie)
+    public void Apply(Zombie zombie, bool isVersus)
     {
         this.Health?.Apply(zombie);
-        this.Versus?.Apply(zombie);
+        if (isVersus)
+        {
+            this.Versus?.Apply(zombie);
+        }
     }
 }

@@ -7,6 +7,7 @@ using HarmonyLib;
 using Il2CppReloaded.Gameplay;
 
 using PvZDataGarden.Configuration.Gameplay.Zombies.Data;
+using PvZDataGarden.Unity.Extensions;
 
 [HarmonyPatch]
 internal static class ZombieInitializePatch
@@ -24,7 +25,8 @@ internal static class ZombieInitializePatch
 
         if (Overrides.TryGetValue(__instance.mZombieType, out var @override))
         {
-            @override.Apply(__instance);
+            bool isVersus = __instance.mApp.Ref()?.IsVersusMode() ?? false;
+            @override.Apply(__instance, isVersus);
         }
     }
 }
