@@ -4,20 +4,22 @@ using HarmonyLib;
 
 using Il2CppReloaded;
 using Il2CppReloaded.Services;
+using Il2CppReloaded.TreeStateActivities;
 
-using Il2CppTekly.Injectors;
+using PvZDataGarden.Events;
 
 [HarmonyPatch]
-public static class DataServiceApi
+internal static class DataServiceApi
 {
-    public static event Action<IDataService>? OnReady;
+    public static readonly OneTimeEvent<IDataService> OnReady = new();
 
     [HarmonyPostfix]
-    [HarmonyPatch(typeof(AppCore), nameof(AppCore.Provide))]
-    private static void AppCore_Provide_Postfix(InjectorContainer container)
+    [HarmonyPatch(typeof(FrontendActivity), nameof(FrontendActivity.ActiveStarted))]
+    private static void ActiveStarted()
     {
-        var dataService = container.Get<IDataService>();
-
-        dataService.add_OnReady((Action)(() => OnReady?.Invoke(dataService)));
+        if (!OnReady.Invoked)
+        {
+            OnReady?.Invoke(AppCore.GetService<IDataService>());
+        }
     }
 }

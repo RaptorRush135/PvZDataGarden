@@ -3,6 +3,8 @@
 using Il2CppReloaded.Data;
 using Il2CppReloaded.Gameplay;
 
+using PvZDataGarden.Extensions;
+
 public sealed record SeedPacketConfiguration : SeedPacketConfigurationData
 {
     public SeedType Type { get; set; }
@@ -14,7 +16,7 @@ public sealed record SeedPacketConfiguration : SeedPacketConfigurationData
             Type = definition.SeedType,
             Cost = definition.SeedCost,
             RefreshTime = definition.RefreshTime,
-            LaunchRate = definition.LaunchRate == 0 ? null : definition.LaunchRate,
+            LaunchRate = definition.LaunchRate.NullIfDefault(),
             Versus = SeedPacketVersusConfiguration.Create(
                 cost: definition.VersusCost,
                 refreshTime: definition.VersusBaseRefreshTime,

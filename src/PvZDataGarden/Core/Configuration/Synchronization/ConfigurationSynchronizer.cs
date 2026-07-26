@@ -30,13 +30,25 @@ public abstract class ConfigurationSynchronizer<TType, TDefinition, TData>(strin
     public void Patch(Func<TType, TDefinition> definitionProvider)
     {
         var configurations = ConfigurationReader.Read<TType, TData>(this.targetFile);
+        this.Patch(definitionProvider, configurations);
+    }
+
+    protected static void LogPatchedCount(int count)
+    {
+        Melon<Core>.Logger.Msg($"Patched {count} {typeof(TDefinition).Name}s");
+    }
+
+    protected virtual void Patch(
+        Func<TType, TDefinition> definitionProvider,
+        IReadOnlyDictionary<TType, TData> configurations)
+    {
         foreach (var (type, configuration) in configurations)
         {
             TDefinition definition = definitionProvider.Invoke(type);
             configuration.Patch(definition);
         }
 
-        Melon<Core>.Logger.Msg($"Patched {configurations.Count} {typeof(TDefinition).Name}s");
+        LogPatchedCount(configurations.Count);
     }
 
     protected abstract Dictionary<TType, TData> ExtractConfigurations(IEnumerable<TDefinition> definitions);

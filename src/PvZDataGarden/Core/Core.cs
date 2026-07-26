@@ -9,6 +9,7 @@ using MelonLoader;
 using PvZDataGarden.Api;
 using PvZDataGarden.Configuration.Gameplay.Projectiles;
 using PvZDataGarden.Configuration.Gameplay.SeedPackets;
+using PvZDataGarden.Configuration.Gameplay.Zombies;
 using PvZDataGarden.Configuration.Synchronization;
 using PvZDataGarden.Extensions;
 
@@ -20,6 +21,10 @@ public sealed class Core : MelonMod
             new SeedPacketConfigurationSynchronizer("packets.json"),
             s => s.PlantDefinitions.AsEnumerable(),
             s => s.GetPlantDefinition),
+        new ConfigurationSynchronizationDescriptor<ZombieType, ZombieDefinition>(
+            new ZombieConfigurationSynchronizer("zombies.json"),
+            s => s.ZombieDefinitions.AsEnumerable(),
+            s => s.GetZombieDefinition),
         new ConfigurationSynchronizationDescriptor<ProjectileType, ProjectileDefinition>(
             new ProjectileConfigurationSynchronizer("projectiles.json"),
             s => s.ProjectileDefinitions.AsEnumerable(),
@@ -28,7 +33,7 @@ public sealed class Core : MelonMod
 
     public override void OnInitializeMelon()
     {
-        DataServiceApi.OnReady += OnDataServiceReady;
+        DataServiceApi.OnReady.Subscribe(OnDataServiceReady);
     }
 
     private static void OnDataServiceReady(IDataService dataService)

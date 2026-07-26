@@ -4,13 +4,15 @@ using System.Text.Json.Serialization;
 
 using Il2CppReloaded.Data;
 
+using PvZDataGarden.Extensions;
+
 public record SeedPacketConfigurationData : IConfigurationData<PlantDefinition>
 {
     [JsonIgnore]
     public bool IsEmpty =>
-        IsNullOrZero(this.Cost) &&
-        IsNullOrZero(this.RefreshTime) &&
-        IsNullOrZero(this.LaunchRate) &&
+        this.Cost.IsNullOrZero() &&
+        this.RefreshTime.IsNullOrZero() &&
+        this.LaunchRate.IsNullOrZero() &&
         this.Versus is null;
 
     public int? Cost { get; set; }
@@ -28,6 +30,4 @@ public record SeedPacketConfigurationData : IConfigurationData<PlantDefinition>
         definition.m_launchRate = this.LaunchRate ?? definition.m_launchRate;
         this.Versus?.Patch(definition);
     }
-
-    private static bool IsNullOrZero(int? value) => value is null or 0;
 }
