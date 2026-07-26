@@ -21,5 +21,10 @@ public record ZombieConfigurationData : IConfigurationData<ZombieDefinition>
         {
             this.Versus?.Apply(zombie);
         }
+
+        zombie.mBodyMaxHealth = zombie.mBodyHealth;
+        zombie.mHelmMaxHealth = zombie.mHelmHealth;
+        zombie.mShieldMaxHealth = zombie.mShieldHealth;
+        zombie.mFlyingMaxHealth = zombie.mFlyingHealth;
     }
 }

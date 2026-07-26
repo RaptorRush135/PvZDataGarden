@@ -16,22 +16,22 @@ public sealed record ZombieHealth
     {
         if (this.Body is { } bodyValue)
         {
-            zombie.mBodyHealth = zombie.mBodyMaxHealth = bodyValue;
+            zombie.mBodyHealth = bodyValue;
         }
 
         if (this.Helmet is { } helmetValue)
         {
-            zombie.mHelmHealth = zombie.mHelmMaxHealth = helmetValue;
+            zombie.mHelmHealth = helmetValue;
         }
 
         if (this.Shield is { } shieldValue)
         {
-            zombie.mShieldHealth = zombie.mShieldMaxHealth = shieldValue;
+            zombie.mShieldHealth = shieldValue;
         }
 
         if (this.Flying is { } flyingValue)
         {
-            zombie.mFlyingHealth = zombie.mFlyingMaxHealth = flyingValue;
+            zombie.mFlyingHealth = flyingValue;
         }
     }
 }
