@@ -33,6 +33,8 @@ public sealed class Core : MelonMod
 
     private static void OnDataServiceReady(IDataService dataService)
     {
+        Melon<Core>.Logger.WriteSpacer();
+
         foreach (var config in Configurations)
         {
             try
@@ -48,6 +50,10 @@ public sealed class Core : MelonMod
             catch (Exception ex)
             {
                 Melon<Core>.Logger.Error($"Error synchronizing '{config.DefinitionTypeName}'", ex);
+            }
+            finally
+            {
+                Melon<Core>.Logger.WriteSpacer();
             }
         }
     }
