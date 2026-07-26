@@ -22,9 +22,7 @@ public sealed record ZombieConfiguration : ZombieConfigurationData
         {
             Type = definition.ZombieType,
             Health = health,
-            Versus = health == null
-                ? null
-                : ZombieVersusConfiguration.Create(
+            Versus = ZombieVersusConfiguration.Create(
                     definition.VersusBodyHealth,
                     definition.VersusArmorHealth),
         };
@@ -32,7 +30,7 @@ public sealed record ZombieConfiguration : ZombieConfigurationData
 
     public ZombieConfigurationData AsData() => this;
 
-    private static ZombieHealth? GetHealth(ZombieDefinition definition)
+    private static ZombieHealth GetHealth(ZombieDefinition definition)
     {
         var zombie = GetDummyZombie(definition);
 
