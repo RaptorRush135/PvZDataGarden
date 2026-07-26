@@ -16,8 +16,11 @@ public record ZombieConfigurationData : IConfigurationData<ZombieDefinition>
 
     public void Apply(Zombie zombie, bool isVersus)
     {
-        this.Health?.Apply(zombie);
-        if (isVersus)
+        if (!isVersus)
+        {
+            this.Health?.Apply(zombie);
+        }
+        else
         {
             this.Versus?.Apply(zombie);
         }
